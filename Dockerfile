@@ -1,12 +1,16 @@
-FROM golang:1.19.2-bullseye
+FROM golang:1.19
 
 LABEL authors="Litmus"
 
 WORKDIR /app
 
-COPY . .
 
-RUN go mod dowload
+
+COPY go.mod go.sum ./
+
+RUN go mod download
+
+COPY . .
 
 RUN go build -o /godocker
 
