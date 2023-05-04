@@ -12,5 +12,5 @@ RUN go build -o /godocker
 
 EXPOSE 8080
 
-CMD ["/godocker"]
+CMD ["/godocker --server=http"]
 
