@@ -145,7 +145,6 @@ func setupRoutes() {
 func StartWebsocketServer() {
 	redisClient := redisrepo.InitialiseRedis()
 	defer redisClient.Close()
-
 	go broadcaster()
 	setupRoutes()
 	port := os.Getenv("WS-PORT")
