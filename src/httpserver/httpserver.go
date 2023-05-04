@@ -3,6 +3,7 @@ package httpserver
 import (
 	"fmt"
 	"net/http"
+	"os"
 
 	"awesomeProject/src/redisrepo"
 
@@ -31,5 +32,9 @@ func StartHTTPServer() {
 
 	// Use default options
 	handler := cors.Default().Handler(r)
-	http.ListenAndServe(":8080", handler)
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	http.ListenAndServe("0.0.0.0:"+port, handler)
 }

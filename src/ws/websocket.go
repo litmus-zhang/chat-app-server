@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"awesomeProject/model"
@@ -147,5 +148,9 @@ func StartWebsocketServer() {
 
 	go broadcaster()
 	setupRoutes()
-	http.ListenAndServe(":8081", nil)
+	port := os.Getenv("WS-PORT")
+	if port == "" {
+		port = "8081"
+	}
+	http.ListenAndServe("0.0.0.0:"+port, nil)
 }
